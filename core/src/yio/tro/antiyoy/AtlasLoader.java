@@ -44,7 +44,7 @@ class AtlasLoader {
         while (stringTokenizer.hasMoreTokens()) {
             String token = stringTokenizer.nextToken();
             if (token.contains("rows=")) {
-                String s = token.substring(5, token.length() - 1);
+                String s = token.substring(5, token.length());
                 rows = Integer.valueOf(s);
             }
             if (token.length() > 5 && !token.contains("compression=") && !token.contains("rows="))
