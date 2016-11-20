@@ -1069,7 +1069,11 @@ public class GameController {
             switch (difficulty) {
                 default:
                 case EASY:
-                    aiList.add(new AiEasy(this, i));
+                    if (GameController.slay_rules) {
+                        aiList.add(new AiNormalSlayRules(this, i));
+                    } else {
+                        aiList.add(new AiNormalGenericRules(this, i));
+                    }
                     break;
                 case NORMAL:
                     if (GameController.slay_rules) {
