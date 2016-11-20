@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 
@@ -58,7 +59,7 @@ class AtlasLoader {
             fileNames.add(fileName);
             String sizeString = line.substring(charPos + 1, line.length() - 1);
             int array[] = getArrayFromString(sizeString, 4);
-            Rect rect = new Rect(array[0], array[1], array[2], array[3]);
+            Rect rect = new Rect(10, 10, 98, 98); //array[0], array[1], array[2], array[3]);
             imageSpecs.add(rect);
         }
     }
@@ -78,8 +79,11 @@ class AtlasLoader {
 
 
     public TextureRegion getTexture(String fileName) {
-        int index = fileNames.indexOf(fileName);
-        return new TextureRegion(atlasRegion, imageSpecs.get(index).x, imageSpecs.get(index).y, imageSpecs.get(index).width, imageSpecs.get(index).height);
+        Texture texture = new Texture(Gdx.files.internal("field_elements/" + fileName));
+        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        return new TextureRegion(texture);
+//        int index = fileNames.indexOf(fileName);
+//        return new TextureRegion(atlasRegion, imageSpecs.get(index).x, imageSpecs.get(index).y, imageSpecs.get(index).width, imageSpecs.get(index).height);
     }
 
 }
